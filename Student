@@ -1,0 +1,104 @@
+/*Create a linked list with nodes
+-containing the name, USN, marks of three subjects and total marks of a student
+-Sort the list
+-Create another linked list with nodes of failed students
+*/
+
+/* Header files */
+#include<stdio.h>
+
+/* Structured Node */
+typedef struct node
+{
+    char name[20];
+    int m1,m2,m3;
+    int totalMarks;
+    char usn[10];
+    struct node* next;
+}*Node;
+
+Node head = NULL;
+
+
+/* Function prototypes */
+Node* create(Node);
+Node* insert(Node);
+Node* sort(Node);
+Node* failedList(Node);
+Node* print(Node);
+
+
+/* Function definitions */
+Node* create(Node head)
+{
+    Node new_node = (Node *)malloc(sizeof(Node));
+    new_node->name[0] = "";
+    new_node->usn[0] = "";
+    new_node->m1 = 0;
+    new_node->m1 = 0;
+    new_node->m1 = 0;
+    head->next = new_node;
+    return head;
+}
+
+Node* insert(Node head)
+{
+    Node ptr = (Node *)malloc(sizeof(Node));
+    ptr = create(head);
+
+    printf(" NAME :  ");
+    scanf("%s",&ptr->name);
+
+    printf(" USN  ");
+    scanf("%d",&ptr->usn);
+
+    printf(" MARKS :  \n");
+    scanf("\tSubject1 : %d\n\tSubject2 : %d\n\tSubject3 : %d\n",&ptr->m1,&ptr->m2,&ptr->m3);
+
+    ptr->totalMarks = ptr->m1+ptr->m2+ptr->m3;
+    return head;
+}
+
+Node* print(Node head)
+{
+    int n=3;
+    Node temp = (Node)malloc(sizeof(Node));
+    temp = head;
+    printf(" ----------------- Student Details ------------------- \n");
+    while(temp->next != NULL)
+    {
+        temp = temp->next;
+        printf(" NAME : %d\n",temp->name);
+        printf(" USN : %d\n",temp->name);
+        printf(" marks : %d\n",temp->name);
+
+        printf(" MARKS :  \n");
+        printf("\tSubject1 : %d\n\tSubject2 : %d\n\tSubject3 : %d\n",temp->m1,temp->m2,temp->m3);
+    }
+    printf(" ----------------------------------------------------- \n");
+}
+
+/* Driver function - main() function */
+void main()
+{
+    int n,ch;
+    printf(" Enter the number of students :  \n");
+    scanf("%d",&n);
+
+    printf(" ------------------------ MENU -------------------------- \n");
+    printf(" \t1. INSERT \n\t2.Display \n\t3.EXIT\n");
+
+    do{
+    printf(" Enter your choice :  ");
+    scanf("%d",&ch);
+        switch(ch){
+        case 1: insert(head);
+                break;
+
+        case 2: print(head);
+                break;
+
+        case 3: break;
+        }
+    }while(1);
+}
